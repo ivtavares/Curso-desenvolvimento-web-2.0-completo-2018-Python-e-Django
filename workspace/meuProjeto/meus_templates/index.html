@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Seja bem vindo - Página Principal    
+{% endblock title %}
+
+
+{% block main  %}
+<h1 class="programe_facil">Ola Mundo</h1>
+
+<ul>
+    <li>item 1</li>
+    <li>item 1</li>
+    <li>item 1</li>
+    <li>item 1</li>
+    <li>item 1</li>
+</ul>
+
+<p>Condicionais</p>
+{% if sexo == 'm'%}
+    Ola senhor {{ nome }}
+
+{%elif sexo == 'f' %}
+    Ola senhora {{ nome }}
+{%else %}
+    Ola {{nome}}
+{%endif%}
+<br>
+<br>
+<p>Loops</p>
+
+<ul>
+    {% for pessoa in lista%}
+  <li>
+        {% if pessoa.sexo == 'm'%}
+            Ola senhor {{ pessoa.nome }}
+        {%elif pessoa.sexo == 'f' %}
+            Ola senhora {{ pessoa.nome }}
+        {%else %}
+            Ola {{pessoa.nome}}
+        {%endif%}
+   </li> 
+{%endfor%}
+</ul>
+<button type="button" class="btn btn-primary" onclick="olaMundo()">clique aqui</button>
+{% include 'footer.html' with pnome=nome %}
+{% endblock  %}
+
