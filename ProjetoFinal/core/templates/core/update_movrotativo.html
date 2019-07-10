@@ -1,0 +1,11 @@
+<h2>Updating Veiculo: {{ movRotativo }}</h2>
+
+<form action="{% url 'core_movrotativo_update' movRotativo.id %}" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p}}
+
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="{%url 'core_movrotativo_delete' movRotativo.id%}">Deletar</a>

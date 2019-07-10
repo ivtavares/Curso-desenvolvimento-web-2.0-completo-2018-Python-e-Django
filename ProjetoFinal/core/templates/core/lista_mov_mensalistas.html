@@ -1,0 +1,14 @@
+<h1>lista_mov_mensalistas</h1> 
+<ul>
+    {% for mov_mensalista in mov_mensalistas %}
+    <li>
+        <a href="{% url 'core_movpessoas_update' mov_mensalista.id %}">{{mov_mensalista}}</a>
+    </li>
+    {%endfor %}
+</ul>
+
+<form action="{%url 'core_movpessoas_novo'%}" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Cadastrar</button>
+</form>
