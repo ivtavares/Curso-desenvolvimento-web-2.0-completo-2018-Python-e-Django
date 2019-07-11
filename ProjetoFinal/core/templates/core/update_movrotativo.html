@@ -1,11 +1,23 @@
-<h2>Updating Veiculo: {{ movRotativo }}</h2>
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
 
-<form action="{% url 'core_movrotativo_update' movRotativo.id %}" method="post">
-    {% csrf_token %}
+{% block main %}
+    <div class="row">
+        <div class="col">
+            <h2>Atualizar Movimento Rotativo: {{ movRotativo }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'core_movrotativo_update' movRotativo.id %}" method="post">
+                {% csrf_token %}
 
-    {{ form.as_p}}
+                {{ form|crispy }}
 
-    <button type="submit">Salvar</button>
-</form>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{%url 'core_movrotativo_delete' movRotativo.id%}" class="btn btn-danger">Deletar</a>  
+            </form>      
+        </div>
+    </div>
 
-<a href="{%url 'core_movrotativo_delete' movRotativo.id%}">Deletar</a>
+{% endblock main %}

@@ -1,14 +1,49 @@
-<h1>Lista Movimentos Rotativos</h1> 
-<ul>
-    {% for mov in mov_rot %}
-    <li>
-        <a href="{%url 'core_movrotativo_update' mov.id %}">{{mov.checkin}} - {{mov}}</a>
-    </li>
-    {%endfor %}
-</ul>
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block main %}
 
-<form action="{% url 'core_movrotativo_novo'%}" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Cadastrar</button>
-</form>
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Cadastro</h1>
+            <form action="{% url 'core_movrotativo_novo'%}" method="post">
+                {% csrf_token %}
+                
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>        
+        </div>
+        <div class="col-sm-6">
+            <h1>Lista de Movimentos Rotativos</h1> 
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Check in</th>
+                        <th scope="col">Check out</th>
+                        <th scope="col">Valor/Hora</th>
+                        <th scope="col">Veículo</th>
+                        <th scope="col">Pagamento</th>
+                    </tr>
+                </thead>
+                {% for mov in mov_rot %}
+                     <tbody>
+                        <tr class="table-row"data-href="{% url 'core_movrotativo_update' mov.id %}">
+                                <th scope="row">{{mov.id}}</th>
+                                <td>{{mov.mensalista.checkin}}</td>
+                                <td>{{mov.checkout}}</td>
+                                <td>{{mov.valor_hora}}</td>
+                                <td>{{mov.veiculo}}</td>
+                                <td>{{mov.pago}}</td>
+                            </a>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+            <ul>
+            
+        </div>
+    </div>    
+   
+
+
+    {% endblock main %}

@@ -23,7 +23,7 @@ from .forms import (
 
 def home(request):
     context = {'mensagem': 'Ola Mundo'}
-    return render(request, 'base.html',context)
+    return render(request, 'core/index.html',context)
 
 
 def lista_pessoas(request):

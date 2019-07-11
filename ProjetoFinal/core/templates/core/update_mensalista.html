@@ -1,11 +1,21 @@
-<h2>Updating Veiculo: {{ mensalista }}</h2>
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
 
-<form action="{% url 'core_mensalista_update' mensalista.id %}" method="post">
-    {% csrf_token %}
+{% block main %}
+<div class="row">
+    <div class="col">
+        <h2>Atualizar Mensalista: {{ mensalista }}</h2>
 
-    {{ form.as_p}}
+        <form action="{% url 'core_mensalista_update' mensalista.id %}" method="post">
+            {% csrf_token %}
+
+            {{ form|crispy}}
 
 
-    <button type="submit">Salvar</button>
-</form>
-<a href="{%url 'core_mensalista_delete' mensalista.id%}">Deletar</a>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{%url 'core_mensalista_delete' mensalista.id%}" class="btn btn-danger">Deletar</a>
+        </form>
+    </div>
+</div>
+    
+{% endblock main %}

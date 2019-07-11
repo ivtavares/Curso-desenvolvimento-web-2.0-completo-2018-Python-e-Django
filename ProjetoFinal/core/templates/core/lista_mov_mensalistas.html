@@ -1,14 +1,44 @@
-<h1>lista_mov_mensalistas</h1> 
-<ul>
-    {% for mov_mensalista in mov_mensalistas %}
-    <li>
-        <a href="{% url 'core_movpessoas_update' mov_mensalista.id %}">{{mov_mensalista}}</a>
-    </li>
-    {%endfor %}
-</ul>
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
 
-<form action="{%url 'core_movpessoas_novo'%}" method="post">
-    {%csrf_token%}
-    {{form.as_p}}
-    <button type="submit">Cadastrar</button>
-</form>
+{% block main %}
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Cadastro</h1>
+            <form action="{%url 'core_movpessoas_novo'%}" method="post">
+                {%csrf_token%}
+                
+                {{form|crispy}}
+                
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <h1>Lista de Movimentação dos Mensal</h1> 
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Mensalista</th>
+                    <th scope="col">Data de Pagamento</th>
+                    <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                {% for mov_mensalista in mov_mensalistas %}
+                     <tbody>
+                        <tr class="table-row"data-href="{% url 'core_movpessoas_update' mov_mensalista.id %}">
+                                <th scope="row">{{mov_mensalista.id}}</th>
+                                <td>{{mov_mensalista.mensalista.veiculo}}</td>
+                                <td>{{mov_mensalista.dt_pago}}</td>
+                                <td>{{mov_mensalista.total}}</td>
+                            </a>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+   
+{% endblock main %}
