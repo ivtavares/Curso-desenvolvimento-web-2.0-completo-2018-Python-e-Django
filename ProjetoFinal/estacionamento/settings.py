@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
     'crispy_forms',
+    'core',
+    'website',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -127,3 +128,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'core_home'
+LOGOUT_REDIRECT_URL = 'core_home'
