@@ -7,6 +7,7 @@ def home(request):
 
 
 def contato(request):
+    import pdb; pdb.set_trace()
     return render(request, 'website/contato.html')
 
 
